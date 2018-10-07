@@ -32,7 +32,7 @@ int main()
     std::cout<<"1\n";
     std::this_thread::sleep_for(std::chrono::seconds(1));
 	
-	int addr = 0xe1;          //<<<<<The I2C address of the slave
+	int addr = 0x1e;          //<<<<<The I2C address of the slave
 	if (ioctl(file_i2c, I2C_SLAVE, addr) < 0)
 	{
 		printf("Failed to acquire bus access and/or talk to slave.\n");
@@ -42,6 +42,7 @@ int main()
 
     std::cout<<"2\n";
     std::this_thread::sleep_for(std::chrono::seconds(1));
+<<<<<<< HEAD
 
 
     //----- READ BYTES -----
@@ -68,3 +69,6 @@ int main()
 	}
 
 }
+=======
+}
+>>>>>>> 878feb767ea7284404b6f3cc6bf09a4947eb64d3
