@@ -42,8 +42,6 @@ int main()
 
     std::cout<<"2\n";
     std::this_thread::sleep_for(std::chrono::seconds(1));
-<<<<<<< HEAD
-
 
     //----- READ BYTES -----
 	length = 4;			//<<< Number of bytes to read
@@ -69,6 +67,3 @@ int main()
 	}
 
 }
-=======
-}
->>>>>>> 878feb767ea7284404b6f3cc6bf09a4947eb64d3
