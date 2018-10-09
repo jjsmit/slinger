@@ -18,7 +18,7 @@ int main()
 	unsigned char buffer[60] = {0};
 
     std::cout<<"0\n";
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+
 
 	//----- OPEN THE I2C BUS -----
 	char *filename = (char*)"/dev/i2c-1";
@@ -71,7 +71,7 @@ int main()
 			printf("c	Failed to write to the i2c bus.\n");	
 			exit(1);
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(6));
+		std::this_thread::sleep_for(std::chrono::milliseconds(50);
 
 		buffer[0] = 0x3d;
 		buffer[1] = 0x06;
