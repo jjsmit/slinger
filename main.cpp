@@ -43,39 +43,42 @@ int main()
     std::cout<<"2\n";
     
 
-
-	buffer[0] = 0x3c;
-	buffer[1] = 0x00;
-	buffer[2] = 0x70;
-	length = 3;			//<<< Number of bytes to write
+	buffer[0] = 0x1e;
+	buffer[1] = 0x3c;
+	buffer[2] = 0x00;
+	buffer[3] = 0x70;
+	length = 4;			//<<< Number of bytes to write
 	if (write(file_i2c, buffer, length) != length)	{	//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
 		printf("a	Failed to write to the i2c bus.\n");
 		exit(1);
 	}
 
-	buffer[0] = 0x3c;
-	buffer[1] = 0x01;
-	buffer[2] = 0xa0;
-	length = 3;			//<<< Number of bytes to write
+	buffer[0] = 0x1e;
+	buffer[1] = 0x3c;
+	buffer[2] = 0x01;
+	buffer[3] = 0xa0;
+	length = 4;			//<<< Number of bytes to write
 	if (write(file_i2c, buffer, length) != length){		//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
 		printf("b	Failed to write to the i2c bus.\n");
 		exit(1);
 	}
 
 	while(true){
-		buffer[0] = 0x3c;
-		buffer[1] = 0x02;
-		buffer[2] = 0x01;
-		length = 3;			//<<< Number of bytes to write
+		buffer[0] = 0x1e;
+		buffer[1] = 0x3c;
+		buffer[2] = 0x02;
+		buffer[3] = 0x01;
+		length = 4;			//<<< Number of bytes to write
 		if (write(file_i2c, buffer, length) != length)	{	//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
 			printf("c	Failed to write to the i2c bus.\n");	
 			exit(1);
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(50);
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
-		buffer[0] = 0x3d;
-		buffer[1] = 0x06;
-		length = 2;			//<<< Number of bytes to write
+		buffer[0] = 0x1e;
+		buffer[1] = 0x3d;
+		buffer[2] = 0x06;
+		length = 3;			//<<< Number of bytes to write
 		if (write(file_i2c, buffer, length) != length)	{	//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
 			printf("d	Failed to write to the i2c bus.\n");
 			exit(1);
