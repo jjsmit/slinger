@@ -30,7 +30,7 @@ int main()
 	}
 
     std::cout<<"1\n";
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+
 	
 	int addr = 0x1e;          //<<<<<The I2C address of the slave
 	if (ioctl(file_i2c, I2C_SLAVE, addr) < 0)
@@ -41,22 +41,22 @@ int main()
 	}
 
     std::cout<<"2\n";
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    
 
 
 	buffer[0] = 0x3c;
 	buffer[1] = 0x00;
 	buffer[2] = 0x70;
-	length = 3;			//<<< Number of bytes to write
+	length = 1;			//<<< Number of bytes to write
 	if (write(file_i2c, buffer, length) != length)		//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
-		printf("Failed to write to the i2c bus.\n");
+		printf("a	Failed to write to the i2c bus.\n");
 
 	buffer[0] = 0x3c;
 	buffer[1] = 0x01;
 	buffer[2] = 0xa0;
 	length = 3;			//<<< Number of bytes to write
 	if (write(file_i2c, buffer, length) != length)		//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
-		printf("Failed to write to the i2c bus.\n");
+		printf("b	Failed to write to the i2c bus.\n");
 
 
 	while(true){
@@ -65,7 +65,7 @@ int main()
 		buffer[2] = 0x01;
 		length = 3;			//<<< Number of bytes to write
 		if (write(file_i2c, buffer, length) != length)		//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
-			printf("Failed to write to the i2c bus.\n");	
+			printf("c	Failed to write to the i2c bus.\n");	
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(6));
 
@@ -73,7 +73,7 @@ int main()
 		buffer[1] = 0x06;
 		length = 2;			//<<< Number of bytes to write
 		if (write(file_i2c, buffer, length) != length)		//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
-			printf("Failed to write to the i2c bus.\n");
+			printf("d	Failed to write to the i2c bus.\n");
 
 		//----- READ BYTES -----
 		length = 6;			//<<< Number of bytes to read
