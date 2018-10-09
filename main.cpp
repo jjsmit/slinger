@@ -47,7 +47,7 @@ int main()
 	buffer[0] = 0x3c;
 	buffer[1] = 0x00;
 	buffer[2] = 0x70;
-	length = 1;			//<<< Number of bytes to write
+	length = 3;			//<<< Number of bytes to write
 	if (write(file_i2c, buffer, length) != length)	{	//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
 		printf("a	Failed to write to the i2c bus.\n");
 		exit(1);
