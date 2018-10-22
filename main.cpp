@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <string>
 
 //#include "i2c-cpp.h"
 
@@ -9,59 +10,39 @@
 #include <sys/ioctl.h>			//Needed for I2C port
 #include <linux/i2c-dev.h>		//Needed for I2C port
 
+#include "HMC5983.h"
+
 //#include "Arduino-HMC5983/HMC5983.h"
+
 
 int main()
 {
-    int file_i2c;
-	int length;
-	unsigned char buffer[60] = {0};
-
-    std::cout<<"0\n";
-
-
-	//----- OPEN THE I2C BUS -----
-	char *filename = (char*)"/dev/i2c-1";
-	if ((file_i2c = open(filename, O_RDWR)) < 0)
-	{
-		//ERROR HANDLING: you can check errno to see what went wrong
-		printf("Failed to open the i2c bus");
-		//return 1;
-	}
-
-    std::cout<<"1\n";
-
-	
-	int addr = 0x1e;          //<<<<<The I2C address of the slave
-	if (ioctl(file_i2c, I2C_SLAVE, addr) < 0)
-	{
-		printf("Failed to acquire bus access and/or talk to slave.\n");
-		//ERROR HANDLING; you can check errno to see what went wrong
-		//return 2;
-	}
-
-    std::cout<<"2\n";
     
+	hmc593 magnetometer;
+    
+	int length, file_i2c;
+	unsigned char buffer[60] ={0};
 
 	buffer[0] = 0x1e;
 	buffer[1] = 0x3c;
 	buffer[2] = 0x00;
 	buffer[3] = 0x70;
 	length = 4;			//<<< Number of bytes to write
-	if (write(file_i2c, buffer, length) != length)	{	//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
-		printf("a	Failed to write to the i2c bus.\n");
-		exit(1);
-	}
 
-	buffer[0] = 0x1e;
-	buffer[1] = 0x3c;
-	buffer[2] = 0x01;
-	buffer[3] = 0xa0;
-	length = 4;			//<<< Number of bytes to write
-	if (write(file_i2c, buffer, length) != length){		//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
-		printf("b	Failed to write to the i2c bus.\n");
-		exit(1);
-	}
+		if (write(file_i2c, buffer, length) != length)	{	//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
+			printf("a	Failed to write to the i2c bus.\n");
+			exit(1);
+		}
+
+		buffer[0] = 0x1e;
+		buffer[1] = 0x3c;
+		buffer[2] = 0x01;
+		buffer[3] = 0xa0;
+		length = 4;			//<<< Number of bytes to write
+		if (write(file_i2c, buffer, length) != length){		//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
+			printf("b	Failed to write to the i2c bus.\n");
+			exit(1);
+		}
 
 	while(true){
 		buffer[0] = 0x1e;
