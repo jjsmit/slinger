@@ -15,7 +15,7 @@ void hmc593::setup()
 		exit(1);
 	}
 
-    std::cout<<"1\n";
+    std::cout<<"opened the i2c bus\n";
 
 	
 	int addr = 0x1e;          //<<<<<The I2C address of the slave
@@ -25,7 +25,10 @@ void hmc593::setup()
 		//ERROR HANDLING; you can check errno to see what went wrong
 		exit(2);
 	}
+	std::cout << "did something with the HMC5983 address\n";
+
 }
+
 hmc593::~hmc593()
 {
 
