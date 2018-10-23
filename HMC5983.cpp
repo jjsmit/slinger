@@ -26,3 +26,7 @@ void hmc593::setup()
 		exit(2);
 	}
 }
+hmc593::~hmc593()
+{
+
+}
