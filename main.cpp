@@ -18,10 +18,12 @@
 int main()
 {
 	hmc5983 magnetometer;
-	magnetometer.setup();
-	
-	magnetometer.set_mode();
-	magnetometer.set_gain();
+	while (!magnetometer.setup())
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	while (!magnetometer.set_mode())
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	while (!magnetometer.set_gain())
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
 	std::vector<float> data;
 
@@ -31,5 +33,7 @@ int main()
 		for (float i : data)
 			std::cout << i <<" ";
 		std::cout<<std::endl;
+		
+		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
 }
