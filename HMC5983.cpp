@@ -1,11 +1,7 @@
 #include "HMC5983.h"
 
-hmc5983::hmc5983()
-{
-   
-}
 
-bool hmc5983::setup()
+bool hmc5983::setup() //some init thing for i2c communication
 {
     char *filename = (char*)"/dev/i2c-1";
 	if ((m_file_i2c = open(filename, O_RDWR)) < 0)

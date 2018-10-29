@@ -11,17 +11,20 @@
 //#include "hmc5983.cpp"
 
 
-class hmc593
+class hmc5983
 {
     public:
 
-        hmc593();
-        void setup();
-        std::vector<int> get_data();
-        void set_mode();
-        ~hmc593();
+        //hmc5983(){};
+        bool setup();
+        bool set_mode();
+        bool set_gain();
+        bool single_measurment(std::vector<float>& data);
+        ~hmc5983();
 
     private:
         int m_length, m_file_i2c;
         unsigned char m_buffer[60] ={0};
+
+
 };
