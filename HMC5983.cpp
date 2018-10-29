@@ -88,7 +88,7 @@ bool hmc5983::single_measurment(std::vector<float>& data)
 	else
 	{
 		for(int i; i<m_length;i++)
-			std::cout << std::hex <<m_buffer[i]<<" ";
+			std::cout << (float)m_buffer[i]<<" ";
 		std::cout << std::endl;
 	}	
 	return true;
