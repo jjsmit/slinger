@@ -24,7 +24,7 @@ class hmc5983
 
     private:
         int m_length, m_file_i2c;
-        unsigned char m_buffer[60] ={0};
+        unsigned char m_buffer[60];
 
 
 };
